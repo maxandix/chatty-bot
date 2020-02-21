@@ -1,5 +1,6 @@
 import dialogflow_v2
 import json
+from dotenv import load_dotenv
 
 
 def create_intent(intent):
@@ -9,6 +10,7 @@ def create_intent(intent):
 
 
 def main():
+    load_dotenv()
     with open("questions.json", "r") as my_file:
         training_data: object = json.load(my_file)
 
