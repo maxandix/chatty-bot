@@ -1,6 +1,13 @@
 import dialogflow_v2
 import json
 from dotenv import load_dotenv
+import argparse
+
+
+def create_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('training_data_path', help='Example: questions.json')
+    return parser
 
 
 def create_intent(intent):
@@ -11,7 +18,8 @@ def create_intent(intent):
 
 def main():
     load_dotenv()
-    with open("questions.json", "r") as my_file:
+    training_data_path = create_parser().parse_args().training_data_path
+    with open(training_data_path, "r") as my_file:
         training_data: object = json.load(my_file)
 
     for name, body in training_data.items():
@@ -23,7 +31,7 @@ def main():
             intent['training_phrases'].append({"parts": [{"text": phrase}]})
 
         create_intent(intent)
-        print('done')
+    print('done')
 
 
 if __name__ == '__main__':

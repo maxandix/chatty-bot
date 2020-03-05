@@ -35,7 +35,7 @@ $ python3 vk_bot.py
 
 ### Как обучить:
 ```console
-$ python3 training.py
+$ python3 training.py questions.json
 ```
 ### Пример результата для Telegram: 
 ![](tg_bot.gif)

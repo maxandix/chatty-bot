@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 
-def echo(event, api):
+def respond_to_an_message(event, api):
     answer = dialogflow_bot.detect_intent_texts('my-chatty-bot', event.user_id, event.text, 'ru')
     if answer:
         api.messages.send(
@@ -22,7 +22,7 @@ def launch_bot(token):
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            echo(event, api)
+            respond_to_an_message(event, api)
 
 
 def main():

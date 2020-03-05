@@ -15,7 +15,7 @@ def help(bot, update):
     update.message.reply_text('Help!')
 
 
-def echo(bot, update):
+def respond_to_an_message(bot, update):
     answer = dialogflow_bot.detect_intent_texts('my-chatty-bot', update.message.chat.id, update.message.text, 'ru')
     if answer:
         update.message.reply_text(answer)
@@ -31,7 +31,7 @@ def launch_bot(token):
 
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    dp.add_handler(MessageHandler(Filters.text, respond_to_an_message))
     dp.add_error_handler(error)
 
     updater.start_polling()
